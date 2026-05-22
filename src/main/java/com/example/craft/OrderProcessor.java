@@ -2,16 +2,24 @@ package com.example.craft;
 
 import java.util.List;
 
+import com.example.craft.delivery.DeliveryStrategy;
+import com.example.craft.delivery.DeliveryStrategyFactory;
 import com.example.craft.discount.DiscountStrategy;
 import com.example.craft.discount.DiscountStrategyFactory;
 import com.example.craft.domain.Customer;
 import com.example.craft.domain.CustomerType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
+import com.example.craft.domain.PaymentType;
+import com.example.craft.payments.PaymentStrategyFactory;
+import com.example.craft.payments.PaymentStrategy;
+
 
 public class OrderProcessor {
 
     private final DiscountStrategyFactory discountStrategyFactory = new DiscountStrategyFactory();
+    private final DeliveryStrategyFactory deliveryStrategyFactory = new DeliveryStrategyFactory();
+    private final PaymentStrategyFactory paymentStrategyFactory = new PaymentStrategyFactory();
 
     public String process(Order order) {
         validateOrder(order);
@@ -82,111 +90,20 @@ public class OrderProcessor {
     } return subtotal;}
 
 
-        private int calculateDiscount(Customer customer, Order order, int subtotal) {
+    private int calculateDiscount(Customer customer, Order order, int subtotal) {
             DiscountStrategy strategy = discountStrategyFactory.getStrategy(customer.getType());
             return strategy.calculateDiscount(order, subtotal);
         }
-
-//     private int calculateDiscount(Customer customer, List<OrderItem> items, int subtotal) {
-//     int discount = 0;
-//     int itemCount = 0;
-//     for (OrderItem item : items) {
-//         itemCount += item.getQuantity();
-//     }
-
-//     if (customer.getType() == CustomerType.STUDENT) {
-//         discount = (int) (subtotal * 0.15);
-
-//         if (subtotal > 10000) {
-//             discount += 250;
-//         }
-
-//         System.out.println("Student discount applied");
-
-//     } else if (customer.getType() == CustomerType.PREMIUM) {
-//         discount = (int) (subtotal * 0.10);
-
-//         if (itemCount > 5) {
-//             discount += 300;
-//         }
-
-//         System.out.println("Premium discount applied");
-
-//     } else if (customer.getType() == CustomerType.STAFF) {
-//         discount = (int) (subtotal * 0.20);
-
-//         if (subtotal > 20000) {
-//             discount += 500;
-//         }
-
-//         System.out.println("Staff discount applied");
-
-//     } else {
-//         System.out.println("No discount applied");
-//     }
-
-//     if (discount > subtotal) {
-//         discount = subtotal;
-//     }
-
-//     return discount;
-// }
-
-private int calculateDeliveryFee(Order order, int subtotal) {
-    String type = order.getDeliveryType();
-    Customer customer = order.getCustomer();
-
-    if (type.equalsIgnoreCase("STANDARD")) {
-        System.out.println("Standard delivery selected");
-        return subtotal > 5000 ? 0 : 399;
-
-    } else if (type.equalsIgnoreCase("NEXT_DAY")) {
-        System.out.println("Next day delivery selected");
-        return subtotal > 15000 ? 499 : 799;
-
-    } else if (type.equalsIgnoreCase("COLLECTION")) {
-        System.out.println("Collection selected");
-
-        if (customer.getPhoneNumber() == null) {
-            System.out.println("Collection selected but no phone number was provided");
+    
+    private int calculateDeliveryFee(Order order, int subtotal) {
+            DeliveryStrategy strategy = deliveryStrategyFactory.getStrategy(order.getDeliveryType());
+            return strategy.calculateDelivery(order, subtotal);
         }
-
-        return 0;
-
-    } else {
-        throw new IllegalArgumentException("Unknown delivery type: " + type);
-    }
-}
-
-private void processPayment(Order order, int total) {
-    Customer customer = order.getCustomer();
-    String paymentType = order.getPaymentType();
-
-    if (paymentType.equalsIgnoreCase("CARD")) {
-        System.out.println("Taking card payment for £" + formatPounds(total));
-
-        if (total > 100000) {
-            System.out.println("Large card payment requires manual review");
+    private void processPayment(Order order, int subtotal) {
+            PaymentStrategy strategy = paymentStrategyFactory.getStrategy(order.getPaymentType());
+            strategy.processPayment(order, subtotal);
         }
-
-    } else if (paymentType.equalsIgnoreCase("PAYPAL")) {
-        System.out.println("Taking PayPal payment for £" + formatPounds(total));
-
-        if (customer.getEmail().endsWith("@example.com")) {
-            System.out.println("PayPal payment using test-like email address");
-        }
-
-    } else if (paymentType.equalsIgnoreCase("BANK_TRANSFER")) {
-        System.out.println("Creating bank transfer request for £" + formatPounds(total));
-
-        if (total < 1000) {
-            System.out.println("Bank transfer for low value order may not be worth processing");
-        }
-
-    } else {
-        throw new IllegalArgumentException("Unknown payment type: " + paymentType);
-    }
-}
+    
 
 private void sendNotifications(Order order, int total) {
     Customer customer = order.getCustomer();
