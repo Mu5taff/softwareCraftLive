@@ -1,5 +1,6 @@
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/Main.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/OrderProcessor.java
+/home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/Utils/Helper.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/delivery/CollectionDeliveryStrategy.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/delivery/DeliveryStrategy.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/delivery/DeliveryStrategyFactory.java
@@ -19,7 +20,6 @@
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/domain/PaymentType.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/payments/BankTransferPaymentStrategy.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/payments/CardPaymentStrategy.java
-/home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/payments/Helper.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/payments/PaymentStrategy.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/payments/PaymentStrategyFactory.java
 /home/ubuntu/probable-octo-broccoli/src/main/java/com/example/craft/payments/PaypalPaymentStrategy.java

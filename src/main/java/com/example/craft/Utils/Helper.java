@@ -1,4 +1,4 @@
-package com.example.craft.payments;
+package com.example.craft.Utils;
 
 public class Helper {
     public static String formatPounds(int pennies) {
