@@ -2,8 +2,11 @@ package com.example.craft;
 
 import com.example.craft.domain.Customer;
 import com.example.craft.domain.CustomerType;
+import com.example.craft.domain.DeliveryType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
+import com.example.craft.domain.PaymentType;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +18,7 @@ class OrderProcessorTest {
     @Test
     void student_customer_gets_discount_and_receipt_contains_total() {
         Customer customer = new Customer("Ada", "ada@example.com", "07123456789", CustomerType.STUDENT);
-        Order order = new Order("ORD-1", customer, "STANDARD", "CARD");
+        Order order = new Order("ORD-1", customer, DeliveryType.STANDARD, PaymentType.CARD);
         order.addItem(new OrderItem("Book", 1, 1000));
 
         String receipt = processor.process(order);
@@ -35,7 +38,7 @@ class OrderProcessorTest {
                 CustomerType.STAFF
         );
 
-        Order order = new Order("ORD-002", customer, "STANDARD", "CARD");
+        Order order = new Order("ORD-002", customer, DeliveryType.STANDARD, PaymentType.CARD);
         order.addItem(new OrderItem("Laptop", 1, 25000));
 
         String receipt = processor.process(order);
@@ -55,7 +58,7 @@ class OrderProcessorTest {
                 CustomerType.STANDARD
         );
 
-        Order order = new Order("ORD-003", customer, "STANDARD", "CARD");
+        Order order = new Order("ORD-003", customer, DeliveryType.STANDARD, PaymentType.CARD);
         order.addItem(new OrderItem("Shoes", 1, 5001));
 
         String receipt = processor.process(order);
@@ -75,7 +78,7 @@ class OrderProcessorTest {
                 CustomerType.STANDARD
         );
 
-        Order order = new Order("ORD-004", customer, "DRONE", "CARD");
+        Order order = new Order("ORD-004", customer, null, PaymentType.CARD);
         order.addItem(new OrderItem("Keyboard", 1, 3000));
 
         IllegalArgumentException exception = assertThrows(
@@ -95,7 +98,7 @@ class OrderProcessorTest {
                 CustomerType.STANDARD
         );
 
-        Order order = new Order("ORD-005", customer, "STANDARD", "CARD");
+        Order order = new Order("ORD-005", customer, DeliveryType.STANDARD, PaymentType.CARD);
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
@@ -114,7 +117,7 @@ class OrderProcessorTest {
                 CustomerType.STANDARD
         );
 
-        Order order = new Order("ORD-006", customer, "COLLECTION", "CARD");
+        Order order = new Order("ORD-006", customer, DeliveryType.COLLECTION, PaymentType.CARD);
         order.addItem(new OrderItem("Notebook", 1, 3000));
 
         String receipt = processor.process(order);
@@ -134,7 +137,7 @@ class OrderProcessorTest {
                 CustomerType.PREMIUM
         );
 
-        Order order = new Order("ORD-007", customer, "STANDARD", "CARD");
+        Order order = new Order("ORD-007", customer, DeliveryType.STANDARD, PaymentType.CARD);
         order.addItem(new OrderItem("Pen", 6, 1000));
 
         String receipt = processor.process(order);

@@ -2,8 +2,10 @@ package com.example.craft;
 
 import com.example.craft.domain.Customer;
 import com.example.craft.domain.CustomerType;
+import com.example.craft.domain.DeliveryType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
+import com.example.craft.domain.PaymentType;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,7 +16,7 @@ public class Main {
                 CustomerType.STUDENT
         );
 
-        Order order = new Order("ORD-1001", customer, "NEXT_DAY", "CARD");
+        Order order = new Order("ORD-1001", customer, DeliveryType.NEXT_DAY, PaymentType.CARD);
         order.addItem(new OrderItem("Keyboard", 1, 4999));
         order.addItem(new OrderItem("Mouse", 2, 1299));
 

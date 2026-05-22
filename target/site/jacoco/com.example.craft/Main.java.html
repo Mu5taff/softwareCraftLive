@@ -2,24 +2,26 @@
 
 import com.example.craft.domain.Customer;
 import com.example.craft.domain.CustomerType;
+import com.example.craft.domain.DeliveryType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
+import com.example.craft.domain.PaymentType;
 
-<span class="nc" id="L8">public class Main {</span>
+<span class="nc" id="L10">public class Main {</span>
     public static void main(String[] args) {
-<span class="nc" id="L10">        Customer customer = new Customer(</span>
+<span class="nc" id="L12">        Customer customer = new Customer(</span>
                 &quot;Ada Lovelace&quot;,
                 &quot;ada@example.com&quot;,
                 &quot;07123456789&quot;,
                 CustomerType.STUDENT
         );
 
-<span class="nc" id="L17">        Order order = new Order(&quot;ORD-1001&quot;, customer, &quot;NEXT_DAY&quot;, &quot;CARD&quot;);</span>
-<span class="nc" id="L18">        order.addItem(new OrderItem(&quot;Keyboard&quot;, 1, 4999));</span>
-<span class="nc" id="L19">        order.addItem(new OrderItem(&quot;Mouse&quot;, 2, 1299));</span>
+<span class="nc" id="L19">        Order order = new Order(&quot;ORD-1001&quot;, customer, DeliveryType.NEXT_DAY, PaymentType.CARD);</span>
+<span class="nc" id="L20">        order.addItem(new OrderItem(&quot;Keyboard&quot;, 1, 4999));</span>
+<span class="nc" id="L21">        order.addItem(new OrderItem(&quot;Mouse&quot;, 2, 1299));</span>
 
-<span class="nc" id="L21">        OrderProcessor processor = new OrderProcessor();</span>
-<span class="nc" id="L22">        processor.process(order);</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L23">        OrderProcessor processor = new OrderProcessor();</span>
+<span class="nc" id="L24">        processor.process(order);</span>
+<span class="nc" id="L25">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -4,28 +4,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Order {
     private final String orderId;
     private final Customer customer;
-<span class="fc" id="L10">    private final List&lt;OrderItem&gt; items = new ArrayList&lt;&gt;();</span>
-    private final String deliveryType;
-    private final String paymentType;
+<span class="fc" id="L11">    private final List&lt;OrderItem&gt; items = new ArrayList&lt;&gt;();</span>
+    private final DeliveryType deliveryType;
+    private final PaymentType paymentType;
 
-<span class="fc" id="L14">    public Order(String orderId, Customer customer, String deliveryType, String paymentType) {</span>
-<span class="fc" id="L15">        this.orderId = orderId;</span>
-<span class="fc" id="L16">        this.customer = customer;</span>
-<span class="fc" id="L17">        this.deliveryType = deliveryType;</span>
-<span class="fc" id="L18">        this.paymentType = paymentType;</span>
-<span class="fc" id="L19">    }</span>
+<span class="fc" id="L15">    public Order(String orderId, Customer customer, DeliveryType deliveryType, PaymentType paymentType) {</span>
+<span class="fc" id="L16">        this.orderId = orderId;</span>
+<span class="fc" id="L17">        this.customer = customer;</span>
+<span class="fc" id="L18">        this.deliveryType = deliveryType;</span>
+<span class="fc" id="L19">        this.paymentType = paymentType;</span>
+<span class="fc" id="L20">    }</span>
 
-<span class="fc" id="L21">    public String getOrderId() { return orderId; }</span>
-<span class="fc" id="L22">    public Customer getCustomer() { return customer; }</span>
-<span class="fc" id="L23">    public List&lt;OrderItem&gt; getItems() { return Collections.unmodifiableList(items); }</span>
-<span class="fc" id="L24">    public String getDeliveryType() { return deliveryType; }</span>
-<span class="fc" id="L25">    public String getPaymentType() { return paymentType; }</span>
+<span class="fc" id="L22">    public String getOrderId() { return orderId; }</span>
+<span class="fc" id="L23">    public Customer getCustomer() { return customer; }</span>
+<span class="fc" id="L24">    public List&lt;OrderItem&gt; getItems() { return Collections.unmodifiableList(items); }</span>
+<span class="fc" id="L25">    public DeliveryType getDeliveryType() { return deliveryType; }</span>
+<span class="fc" id="L26">    public PaymentType getPaymentType() { return paymentType; }</span>
 
     public void addItem(OrderItem item) {
-<span class="fc" id="L28">        items.add(item);</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L29">        items.add(item);</span>
+<span class="fc" id="L30">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

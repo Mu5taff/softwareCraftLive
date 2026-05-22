@@ -10,7 +10,6 @@ import com.example.craft.domain.Customer;
 import com.example.craft.domain.CustomerType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
-import com.example.craft.domain.PaymentType;
 import com.example.craft.payments.PaymentStrategyFactory;
 import com.example.craft.payments.PaymentStrategy;
 
