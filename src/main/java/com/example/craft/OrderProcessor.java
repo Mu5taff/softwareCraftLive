@@ -1,6 +1,5 @@
 package com.example.craft;
 
-import java.util.List;
 
 import com.example.craft.delivery.DeliveryStrategy;
 import com.example.craft.delivery.DeliveryStrategyFactory;
@@ -11,6 +10,7 @@ import com.example.craft.domain.CustomerType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
 import com.example.craft.payments.PaymentStrategyFactory;
+import com.example.craft.utils.Helper;
 import com.example.craft.payments.PaymentStrategy;
 
 
@@ -112,7 +112,7 @@ private void sendNotifications(Order order, int total) {
 
     System.out.println("Sending email to " + customer.getEmail());
     System.out.println("Dear " + customer.getName() + ", your order has been processed.");
-    System.out.println("Order " + order.getOrderId() + " total was £" + formatPounds(total));
+    System.out.println("Order " + order.getOrderId() + " total was £" + Helper.formatPounds(total));
 
     if (customer.getPhoneNumber() != null && customer.getPhoneNumber().startsWith("07")) {
         System.out.println("Sending SMS to " + customer.getPhoneNumber());
@@ -128,17 +128,15 @@ private String generateReceipt(Order order, int subtotal, int discount, int deli
             + "-------\n"
             + "Order: " + order.getOrderId() + "\n"
             + "Customer: " + order.getCustomer().getName() + "\n"
-            + "Subtotal: £" + formatPounds(subtotal) + "\n"
-            + "Discount: £" + formatPounds(discount) + "\n"
-            + "Delivery: £" + formatPounds(deliveryFee) + "\n"
-            + "Total: £" + formatPounds(total) + "\n";
+            + "Subtotal: £" + Helper.formatPounds(subtotal) + "\n"
+            + "Discount: £" + Helper.formatPounds(discount) + "\n"
+            + "Delivery: £" + Helper.formatPounds(deliveryFee) + "\n"
+            + "Total: £" + Helper.formatPounds(total) + "\n";
 
     System.out.println(receipt);
     return receipt;
 }
-private String formatPounds(int pence) {
-    return String.format("%.2f", pence / 100.0);
-}
+
 }
         // if (order == null) {
         //     throw new IllegalArgumentException("Order must not be null");

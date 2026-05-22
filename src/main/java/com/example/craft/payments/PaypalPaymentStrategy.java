@@ -1,8 +1,8 @@
 package com.example.craft.payments;
 
-import com.example.craft.Utils.Helper;
 import com.example.craft.domain.Customer;
 import com.example.craft.domain.Order;
+import com.example.craft.utils.Helper;
 
 public class PaypalPaymentStrategy implements PaymentStrategy {
 

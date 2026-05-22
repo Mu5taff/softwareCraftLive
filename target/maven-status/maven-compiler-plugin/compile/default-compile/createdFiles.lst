@@ -1,7 +1,6 @@
 com/example/craft/domain/Customer.class
 com/example/craft/Main.class
 com/example/craft/domain/OrderItem.class
-com/example/craft/Utils/Helper.class
 com/example/craft/payments/BankTransferPaymentStrategy.class
 com/example/craft/delivery/StandardDeliveryStrategy.class
 com/example/craft/domain/DeliveryType.class
@@ -21,6 +20,8 @@ com/example/craft/domain/CustomerType.class
 com/example/craft/payments/CardPaymentStrategy.class
 com/example/craft/payments/PaymentStrategyFactory$1.class
 com/example/craft/discount/DiscountStrategy.class
+com/example/craft/discount/LoyaltyDiscountStrategy.class
+com/example/craft/utils/Helper.class
 com/example/craft/OrderProcessor.class
 com/example/craft/domain/PaymentType.class
 com/example/craft/payments/PaymentStrategyFactory.class

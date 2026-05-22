@@ -1,11 +1,11 @@
 package com.example.craft.payments;
 
-import com.example.craft.Utils.Helper;
 import com.example.craft.domain.Order;
+import com.example.craft.utils.Helper;
 
 public class BankTransferPaymentStrategy implements PaymentStrategy {
 
-    private final int BANK_TRANSFER_LOW_VALUE = 1000;
+    private static final int BANK_TRANSFER_LOW_VALUE = 1000;
 
     @Override
     public void processPayment(Order order, int total) {

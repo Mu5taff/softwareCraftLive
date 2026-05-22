@@ -14,7 +14,10 @@ import com.example.craft.domain.CustomerType;
 <span class="fc bfc" id="L14" title="All 2 branches covered.">        if (customerType == CustomerType.STAFF) {</span>
 <span class="fc" id="L15">            return new StaffDiscountStrategy();</span>
         }
-<span class="fc" id="L17">        return new NoDiscountStrategy();</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (customerType == CustomerType.LOYALTY) {</span>
+<span class="fc" id="L18">            return new LoyaltyDiscountStrategy();</span>
+        }
+<span class="fc" id="L20">        return new NoDiscountStrategy();</span>
     }
 }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">software-craft-starter</a> &gt; <a href="index.source.html" class="el_package">com.example.craft</a> &gt; <span class="el_source">OrderProcessor.java</span></div><h1>OrderProcessor.java</h1><pre class="source lang-java linenums">package com.example.craft;
 
-import java.util.List;
 
 import com.example.craft.delivery.DeliveryStrategy;
 import com.example.craft.delivery.DeliveryStrategyFactory;
@@ -11,6 +10,7 @@ import com.example.craft.domain.CustomerType;
 import com.example.craft.domain.Order;
 import com.example.craft.domain.OrderItem;
 import com.example.craft.payments.PaymentStrategyFactory;
+import com.example.craft.utils.Helper;
 import com.example.craft.payments.PaymentStrategy;
 
 
@@ -112,7 +112,7 @@ private void sendNotifications(Order order, int total) {
 
 <span class="fc" id="L113">    System.out.println(&quot;Sending email to &quot; + customer.getEmail());</span>
 <span class="fc" id="L114">    System.out.println(&quot;Dear &quot; + customer.getName() + &quot;, your order has been processed.&quot;);</span>
-<span class="fc" id="L115">    System.out.println(&quot;Order &quot; + order.getOrderId() + &quot; total was £&quot; + formatPounds(total));</span>
+<span class="fc" id="L115">    System.out.println(&quot;Order &quot; + order.getOrderId() + &quot; total was £&quot; + Helper.formatPounds(total));</span>
 
 <span class="pc bpc" id="L117" title="2 of 4 branches missed.">    if (customer.getPhoneNumber() != null &amp;&amp; customer.getPhoneNumber().startsWith(&quot;07&quot;)) {</span>
 <span class="fc" id="L118">        System.out.println(&quot;Sending SMS to &quot; + customer.getPhoneNumber());</span>
@@ -128,17 +128,15 @@ private String generateReceipt(Order order, int subtotal, int discount, int deli
             + &quot;-------\n&quot;
 <span class="fc" id="L129">            + &quot;Order: &quot; + order.getOrderId() + &quot;\n&quot;</span>
 <span class="fc" id="L130">            + &quot;Customer: &quot; + order.getCustomer().getName() + &quot;\n&quot;</span>
-<span class="fc" id="L131">            + &quot;Subtotal: £&quot; + formatPounds(subtotal) + &quot;\n&quot;</span>
-<span class="fc" id="L132">            + &quot;Discount: £&quot; + formatPounds(discount) + &quot;\n&quot;</span>
-<span class="fc" id="L133">            + &quot;Delivery: £&quot; + formatPounds(deliveryFee) + &quot;\n&quot;</span>
-<span class="fc" id="L134">            + &quot;Total: £&quot; + formatPounds(total) + &quot;\n&quot;;</span>
+<span class="fc" id="L131">            + &quot;Subtotal: £&quot; + Helper.formatPounds(subtotal) + &quot;\n&quot;</span>
+<span class="fc" id="L132">            + &quot;Discount: £&quot; + Helper.formatPounds(discount) + &quot;\n&quot;</span>
+<span class="fc" id="L133">            + &quot;Delivery: £&quot; + Helper.formatPounds(deliveryFee) + &quot;\n&quot;</span>
+<span class="fc" id="L134">            + &quot;Total: £&quot; + Helper.formatPounds(total) + &quot;\n&quot;;</span>
 
 <span class="fc" id="L136">    System.out.println(receipt);</span>
 <span class="fc" id="L137">    return receipt;</span>
 }
-private String formatPounds(int pence) {
-<span class="fc" id="L140">    return String.format(&quot;%.2f&quot;, pence / 100.0);</span>
-}
+
 }
         // if (order == null) {
         //     throw new IllegalArgumentException(&quot;Order must not be null&quot;);
